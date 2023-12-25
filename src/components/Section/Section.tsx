@@ -1,8 +1,13 @@
-import PropTypes from 'prop-types';
+import { ReactElement } from 'react';
 import { SectionBox } from './SectionBox.styled';
 import { SectionTitle } from './SectionTitle.styled';
 
-export function Section({ title, children }) {
+interface Props {
+  title: string;
+  children: ReactElement;
+}
+
+export function Section({ title, children }: Props) {
   return (
     <SectionBox>
       <SectionTitle>{title}</SectionTitle>
@@ -10,7 +15,3 @@ export function Section({ title, children }) {
     </SectionBox>
   );
 }
-
-Section.propTypes = {
-  title: PropTypes.string,
-};

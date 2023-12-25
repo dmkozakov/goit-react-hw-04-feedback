@@ -15,7 +15,7 @@ export default function App() {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const onLeaveFeedback = key => {
+  const onLeaveFeedback = (key: string) => {
     switch (key) {
       case Reviews.GOOD:
         setGood(state => state + 1);

@@ -1,8 +1,13 @@
-import PropTypes from 'prop-types';
 import { FeedbackBox } from './FeedbackOptions.styled';
 import { FeedbackOptionBtn } from './FeedbackOptionBtn.styled';
+import { MouseEvent } from 'react';
 
-export function FeedbackOptions({ options, onLeaveFeedback }) {
+interface Props {
+  options: string[];
+  onLeaveFeedback: (key: string) => void;
+}
+
+export function FeedbackOptions({ options, onLeaveFeedback }: Props) {
   return (
     <FeedbackBox>
       {options.map(option => (
@@ -10,7 +15,9 @@ export function FeedbackOptions({ options, onLeaveFeedback }) {
           key={option}
           type="button"
           name={option}
-          onClick={e => onLeaveFeedback(e.target.name)}
+          onClick={(e: MouseEvent<HTMLButtonElement>) =>
+            onLeaveFeedback((e.target as HTMLButtonElement).name)
+          }
         >
           {option[0].toUpperCase().concat(option.slice(1))}
         </FeedbackOptionBtn>
@@ -18,7 +25,3 @@ export function FeedbackOptions({ options, onLeaveFeedback }) {
     </FeedbackBox>
   );
 }
-
-FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string.isRequired),
-};
